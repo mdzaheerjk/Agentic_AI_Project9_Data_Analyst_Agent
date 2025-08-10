@@ -1,0 +1,24 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Step 1: Read the CSV file
+data = pd.read_csv('data.csv')
+
+# Step 2: Identify the column with survival information
+# Assuming 'Survived' column where 1 indicates survived and 0 indicates died
+survival_counts = data['Survived'].value_counts()
+
+# Step 3: Plotting the bar graph
+plt.figure(figsize=(6, 4))
+survival_counts.plot(kind='bar', color=['skyblue', 'salmon'])
+plt.title("Survival Count")
+plt.xticks(ticks=[0, 1], labels=['Died', 'Survived'], rotation=0)
+plt.ylabel("Number of People")
+plt.xlabel("Survival Status")
+plt.grid(axis='y')
+
+# Step 4: Save and display the plot
+plt.savefig('output.png')
+plt.show()
+
+print("Graph of people who survived and died has been created and saved as 'output.png'.")

@@ -1,0 +1,34 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Basic Understanding
+# Let's see if there are columns similar to 'Age', 'Sex', 'Pclass', etc., that might influence survival.
+print(data.head())
+
+# Brief Analysis
+survived = data[data['Survived'] == 1]
+died = data[data['Survived'] == 0]
+
+# Example analysis on 'Age'
+avg_survived_age = survived['Age'].mean()
+avg_died_age = died['Age'].mean()
+
+# Gender influence
+male_survival_rate = survived[survived['Sex'] == 'male'].shape[0] / data[data['Sex'] == 'male'].shape[0]
+female_survival_rate = survived[survived['Sex'] == 'female'].shape[0] / data[data['Sex'] == 'female'].shape[0]
+
+# Class influence
+pclass_survival = survived['Pclass'].value_counts(normalize=True)
+
+# In conclusion, some key contributing factors are often:
+# - Gender: In most cases, more females survive than males.
+# - Age: Sometimes younger or older individuals might have different survival rates depending on assistance received.
+# - Class: Higher socio-economic class individuals might have better access to life-saving resources.
+
+print("Average age of survivors:", avg_survived_age)
+print("Average age of deceased:", avg_died_age)
+print("Male survival rate:", male_survival_rate)
+print("Female survival rate:", female_survival_rate)
+print("Survival distribution by class:\n", pclass_survival)

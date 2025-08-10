@@ -1,0 +1,25 @@
+import pandas as pd
+
+# Step 1: Read the CSV file
+data = pd.read_csv('data.csv')
+
+# Step 2: Encode categorical variables
+data['Sex'] = data['Sex'].map({'male': 0, 'female': 1})  # Encode 'Sex' as 0 and 1
+
+# Fill missing values or encode 'Embarked' into numerical, assuming it's a factor in survival
+if 'Embarked' in data.columns:
+    data['Embarked'] = data['Embarked'].fillna('Unknown')
+    data['Embarked'] = data['Embarked'].astype('category').cat.codes
+
+# Step 3: Analyze correlations
+# Filter out the necessary numeric columns for correlation
+numeric_cols = ['Age', 'Pclass', 'Fare', 'Embarked', 'Sex', 'Survived']
+correlation_matrix = data[numeric_cols].corr()
+
+# Display findings
+print("Correlation matrix with survival:")
+print(correlation_matrix)
+
+print("\nAnalysis Summary:")
+print("1. Strong correlation factors would likely have values near -1 or 1.")
+print("2. Assess which factors like age, gender, class, or fare seem influential on survival.")

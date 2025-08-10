@@ -1,0 +1,21 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the CSV file
+data = pd.read_csv('data.csv')
+
+# Analyze survival by gender
+survival_by_gender = data.groupby('Sex')['Survived'].value_counts().unstack()
+
+# Create a bar chart
+survival_by_gender.plot(kind='bar', stacked=True, color=['red', 'blue'], figsize=(8, 6))
+plt.title('Survival by Gender')
+plt.xlabel('Gender')
+plt.ylabel('Number of Passengers')
+plt.xticks(rotation=0)
+plt.legend(['Dead', 'Survived'], title='Survival Status')
+
+# Save the figure as 'output_gender.png'
+plt.savefig('output_gender.png')
+
+print("Graph of survival by gender is saved as 'output_gender.png'")

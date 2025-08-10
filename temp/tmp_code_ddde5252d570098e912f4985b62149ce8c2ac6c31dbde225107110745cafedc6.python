@@ -1,0 +1,22 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Step 1: Load the data
+data = pd.read_csv('data.csv')
+
+# Step 2: Explore the data (not running exploration code since executing that isn't idle here)
+# I'll assume there's a column like 'Survived' where 0 might be died and 1 might be survived
+
+# Step 3: Calculate the counts of people who survived and who didn't
+survival_counts = data['Survived'].value_counts()
+
+# Step 4: Plot the graph
+plt.bar(['Died', 'Survived'], survival_counts, color=['red', 'green'])
+plt.title("Survival Counts")
+plt.xlabel("Outcome")
+plt.ylabel("Number of People")
+
+# Step 5: Save the graph as 'output.png'
+plt.savefig('output.png')
+
+print("Graph has been plotted and saved as 'output.png'.")

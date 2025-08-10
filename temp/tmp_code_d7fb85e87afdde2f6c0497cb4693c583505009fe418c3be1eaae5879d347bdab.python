@@ -1,0 +1,33 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the data from the CSV file
+df = pd.read_csv('data.csv')
+
+# Display basic information and statistics
+print(df.info())
+print(df.describe())
+
+# Visualize the relationship between survival and passenger class
+plt.figure(figsize=(7,5))
+sns.countplot(data=df, x='Pclass', hue='Survived')
+plt.title('Survival by Passenger Class')
+plt.savefig('Pclass_vs_survival.png')
+plt.close()
+
+# Visualize the relationship between survival and sex
+plt.figure(figsize=(7,5))
+sns.countplot(data=df, x='Sex', hue='Survived')
+plt.title('Survival by Sex')
+plt.savefig('Sex_vs_survival.png')
+plt.close()
+
+# Visualize the distribution of age with respect to survival
+plt.figure(figsize=(10,6))
+sns.histplot(data=df, x='Age', hue='Survived', multiple='stack', bins=30)
+plt.title('Age Distribution by Survival Status')
+plt.savefig('Age_vs_survival.png')
+plt.close()
+
+print("The analysis has been completed and visualizations have been saved as images.")

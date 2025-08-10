@@ -1,0 +1,20 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the data from CSV file
+df = pd.read_csv('data.csv')
+
+# Create a bar plot for survival count
+survival_counts = df['Survived'].value_counts()
+survival_counts.plot(kind='bar', color=['red', 'green'])
+
+# Adding labels and title
+plt.xlabel('Survived (0 = No, 1 = Yes)')
+plt.ylabel('Count')
+plt.title('Survival Counts on Titanic')
+
+# Save the plot
+plt.savefig('output.png')
+plt.close()
+
+print("The graph has been successfully plotted and saved as output.png")
